@@ -3,13 +3,8 @@ package com.integral.weather.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.integral.weather.base.ApiResponse;
 import com.integral.weather.base.ResponseCode;
-
 import com.integral.weather.service.WeatherInfoSrv;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.GsonJsonParser;
-import org.springframework.boot.json.JsonParser;
-import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,23 +18,29 @@ import java.util.Map;
 @RestController
 public class WeatherInfoController {
     @Autowired
+    ObjectMapper mapper;
+    @Autowired
     private WeatherInfoSrv weatherInfoSrv;
-@Autowired
-ObjectMapper mapper;
-    @GetMapping(value = "/readWeatherByCityName" ,  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ApiResponse<Map<String, Object>>> getWeatherInfoByCityName (@RequestParam (value = "cityName",required = true)  String cityName) throws Exception{
-        String weatherInfo =weatherInfoSrv.getWeatherInfoByCityName(cityName);
+
+    /*
+     * "readWeatherByCityName" End point is to read data with city and country code separated by comma
+     * */
+    @GetMapping(value = "/readWeatherByCityName", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ApiResponse<Map<String, Object>>> getWeatherInfoByCityName(@RequestParam(value = "cityName", required = true) String cityName) throws Exception {
+        String weatherInfo = weatherInfoSrv.getWeatherInfoByCityName(cityName);
 
         Map<String, Object> responseData = mapper.readValue(weatherInfo, Map.class);
-        return new ResponseEntity<ApiResponse<Map<String, Object>>>( new ApiResponse<Map<String, Object>>(ResponseCode.SUCCESS_CODE,responseData), HttpStatus.OK);
+        return new ResponseEntity<ApiResponse<Map<String, Object>>>(new ApiResponse<Map<String, Object>>(ResponseCode.SUCCESS_CODE, responseData), HttpStatus.OK);
     }
 
-
+    /*
+     * "readWeatherByLatLong" End point is to read data with latitude and longitude of any location
+     * */
     @GetMapping("/readWeatherByLatLong")
-    public  ResponseEntity<ApiResponse<Map<String, Object>>> getWeatherInfoBylatlon (@RequestParam (value = "lat",required = true) String lat,@RequestParam (value = "lon",required = true) String lon)  throws Exception{
-        String weatherInfo =weatherInfoSrv.getWeatherInfoByLatLon(lat,lon);
+    public ResponseEntity<ApiResponse<Map<String, Object>>> getWeatherInfoBylatlon(@RequestParam(value = "lat", required = true) String lat, @RequestParam(value = "lon", required = true) String lon) throws Exception {
+        String weatherInfo = weatherInfoSrv.getWeatherInfoByLatLon(lat, lon);
 
         Map<String, Object> responseData = mapper.readValue(weatherInfo, Map.class);
-        return new ResponseEntity<ApiResponse<Map<String, Object>>>( new ApiResponse<Map<String, Object>>(ResponseCode.SUCCESS_CODE,responseData), HttpStatus.OK);
+        return new ResponseEntity<ApiResponse<Map<String, Object>>>(new ApiResponse<Map<String, Object>>(ResponseCode.SUCCESS_CODE, responseData), HttpStatus.OK);
     }
 }
