@@ -3,33 +3,33 @@
 ## Problem Statement
 
 
-Write a RESTful web service which talks to a 3rd party weather service and caches data for 2 hours.
-It exposes APIs to get weather by city, country and by polar coordinates.
-Write a Sprint Boot application with embedded tomcat to expose the APIs. The codebase should be a Maven project.
-Provide the documentation for each web service with following information:
-URL, Method, Parameters.
-Integrate the following 3rd party weather service to fetch weather information:
-URL:
-api.openweathermap.org/data/2.5/weather?q={city name}&appid=ffa6f13ea40a22452bba3be726315d3f
-Params:
-q= city name and country code divided by comma, use ISO 3166 country codes
-URL:
-api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=ffa6f13ea40a22452bba3be726315d3f
-Params:
-lat, lon coordinates of the location of your interest
+Write a RESTful web service which talks to a 3rd party weather service and caches data for 2 hours.  
+It exposes APIs to get weather by city, country and by polar coordinates.  
+Write a Sprint Boot application with embedded tomcat to expose the APIs. The codebase should be a Maven project.  
+Provide the documentation for each web service with following information:  
+URL, Method, Parameters.  
+Integrate the following 3rd party weather service to fetch weather information:   
+URL:  
+api.openweathermap.org/data/2.5/weather?q={city name}&appid=ffa6f13ea40a22452bba3be726315d3f  
+Params:  
+q= city name and country code divided by comma, use ISO 3166 country codes  
+URL:  
+api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=ffa6f13ea40a22452bba3be726315d3f  
+Params:  
+lat, lon coordinates of the location of your interest  
 
-## Setup And Build
-1- Import the project as a maven project.
-2- Clean and build the project through maven.
-3- Install Redis server on your local machine.
-4- Start tomcat and deploy your project
-Now Project is up and runing.
+## Setup And Build  
+1- Import the project as a maven project.  
+2- Clean and build the project through maven.  
+3- Install Redis server on your local machine.  
+4- Start tomcat and deploy your project.  
+Now Project is up and runing.  
 
-## Technologies Used
-1- Spring Boot
-2- Feign Client
-3- Redis Cache
-4- Lambok
+## Technologies Used  
+1- Spring Boot  
+2- Feign Client  
+3- Redis Cache 
+4- Lambok  
 
 ## Testing End Point & Request Response.
 
