@@ -25,11 +25,15 @@ lat, lon coordinates of the location of your interest
 4- Start tomcat and deploy your project.  
 Now Project is up and runing.  
 
+## How To Access:
+Hit url : http://localhost:8080/swagger-ui.html
+
 ## Technologies Used  
 1- Spring Boot  
 2- Feign Client  
 3- Redis Cache 
 4- Lambok  
+4- swagger  
 
 ## Testing End Point & Request Response.
 
