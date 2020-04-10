@@ -1,11 +1,14 @@
 package com.integral.weather.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.integral.weather.base.ApiResponse;
 import com.integral.weather.base.ResponseCode;
 
 import com.integral.weather.service.WeatherInfoSrv;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.GsonJsonParser;
+import org.springframework.boot.json.JsonParser;
 import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,29 +17,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 
 @RestController
 public class WeatherInfoController {
     @Autowired
     private WeatherInfoSrv weatherInfoSrv;
-
-
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-
-        return name;
-    }
-
-    @GetMapping(value = "/readWeatherByCityName" )
-    public ResponseEntity<ApiResponse<String>> getWeatherInfoByCityName (@RequestParam (value = "cityName",required = true)  String cityName){
+@Autowired
+ObjectMapper mapper;
+    @GetMapping(value = "/readWeatherByCityName" ,  produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ApiResponse<Map<String, Object>>> getWeatherInfoByCityName (@RequestParam (value = "cityName",required = true)  String cityName) throws Exception{
         String weatherInfo =weatherInfoSrv.getWeatherInfoByCityName(cityName);
-        return new ResponseEntity<ApiResponse<String>>( new ApiResponse<String>(ResponseCode.SUCCESS_CODE,weatherInfo), HttpStatus.OK);
+
+        Map<String, Object> responseData = mapper.readValue(weatherInfo, Map.class);
+        return new ResponseEntity<ApiResponse<Map<String, Object>>>( new ApiResponse<Map<String, Object>>(ResponseCode.SUCCESS_CODE,responseData), HttpStatus.OK);
     }
 
 
     @GetMapping("/readWeatherByLatLong")
-    public ResponseEntity<ApiResponse<String>> getWeatherInfoBylatlon (@RequestParam (value = "lat",required = true) String lat,@RequestParam (value = "lon",required = true) String lon){
+    public  ResponseEntity<ApiResponse<Map<String, Object>>> getWeatherInfoBylatlon (@RequestParam (value = "lat",required = true) String lat,@RequestParam (value = "lon",required = true) String lon)  throws Exception{
         String weatherInfo =weatherInfoSrv.getWeatherInfoByLatLon(lat,lon);
-        return new ResponseEntity<ApiResponse<String>>( new ApiResponse<String>(ResponseCode.SUCCESS_CODE,weatherInfo), HttpStatus.OK);
+
+        Map<String, Object> responseData = mapper.readValue(weatherInfo, Map.class);
+        return new ResponseEntity<ApiResponse<Map<String, Object>>>( new ApiResponse<Map<String, Object>>(ResponseCode.SUCCESS_CODE,responseData), HttpStatus.OK);
     }
 }
