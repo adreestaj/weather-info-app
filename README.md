@@ -1,5 +1,4 @@
 # weather-info-app
-## Simple Spring boot app to fetch weather updates from open weather api
 
 ## Problem Statement
 
@@ -37,17 +36,25 @@ Now Project is up and runing.
 ### Get weather by city Name
 	 
 URL:	{{Domain}}/readWeatherByCityName
+
 HttpMethod:	GET
+
 Query Param(s):	cityName=lahore,586
+
 HttpStatusCode:	200
+
 Response Body:	{"statusCode":"200","message":null,"data":{"coord":{"lon":74.34,"lat":31.55},"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03d"}],"base":"stations","main":{"temp":304.75,"feels_like":300.14,"temp_min":304.15,"temp_max":305.15,"pressure":1012,"humidity":29},"visibility":7000,"wind":{"speed":7.2,"deg":350},"clouds":{"all":40},"dt":1586514578,"sys":{"type":1,"id":7585,"country":"PK","sunrise":1586479189,"sunset":1586525253},"timezone":18000,"id":1172451,"name":"Lahore","cod":200}}
 
 ### Get weather by polar coordinates
 
 URL	{{Domain}}/readWeatherByLatLong
+
 HttpMethod:	GET
+
 Query Param(s):	lat=31.55&lon=74.34
+
 HttpStatusCode:	200
+
 Response Body	:{"statusCode":"200","message":null,"data":{"coord":{"lon":74.34,"lat":31.55},"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03d"}],"base":"stations","main":{"temp":304.75,"feels_like":300.14,"temp_min":304.15,"temp_max":305.15,"pressure":1012,"humidity":29},"visibility":7000,"wind":{"speed":7.2,"deg":350},"clouds":{"all":40},"dt":1586514578,"sys":{"type":1,"id":7585,"country":"PK","sunrise":1586479189,"sunset":1586525253},"timezone":18000,"id":1172451,"name":"Lahore","cod":200}}
 
 
